@@ -1,5 +1,4 @@
-public/bundle.js
 node_modules/
-public/*bundle*
-*.map
-*.bundle.js
+dist/
+.env
+.vscode/

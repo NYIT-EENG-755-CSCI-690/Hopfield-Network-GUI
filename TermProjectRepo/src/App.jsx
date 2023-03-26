@@ -1,6 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
-import Landing from "./Landing";
+import { createRoot } from "react-dom";
 
 const App = () => (
     <div className="app">
@@ -10,4 +9,6 @@ const App = () => (
     </div>
 );
 
-render(<App />, document.getElementById("root"));
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(React.createElement(App));
