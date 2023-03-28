@@ -2,14 +2,10 @@
     "balls":[
         {"val_one": "0", 
         "val_two":"0", 
-        "val_three": "0"},
-        
-        {"val_one": "0", 
-        "val_two":"0", 
         "val_three": "1"},
 
-        {"val_one": "0", 
-        "val_two":"1", 
+        {"val_one": "1", 
+        "val_two":"0", 
         "val_three": "1"}
         
     ]

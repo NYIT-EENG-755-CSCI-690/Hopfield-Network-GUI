@@ -28,15 +28,45 @@
   }
 
   .landing {
-    width: 400px;
+    width: 1000px;
     text-align: center;
     margin: 0 auto;
     padding: 3rem 0;
   }
 
-  .ball {
+  // .balls-container {
+  //   display: flex;
+  //   flex-direction: row;
+  //   width: 100%;
+  //   justify-content: space-evenly;
+  // }
+
+
+  .ball-set {
+    display: flex;
+    width: 400px;
+    height:400px;
+  }
+
+
+  .ball-one {
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
     background: palevioletred;
   }
+
+  .ball-two {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    background: palevioletred;
+  }
+
+  .ball-three {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    background: palevioletred;
+  }
+
