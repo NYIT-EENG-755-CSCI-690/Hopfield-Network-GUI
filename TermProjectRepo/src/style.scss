@@ -34,18 +34,11 @@
     padding: 3rem 0;
   }
 
-  // .balls-container {
-  //   display: flex;
-  //   flex-direction: row;
-  //   width: 100%;
-  //   justify-content: space-evenly;
-  // }
-
-
-  .ball-set {
+  .balls-container {
     display: flex;
-    width: 400px;
-    height:400px;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
   }
 
 
@@ -60,13 +53,13 @@
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
-    background: palevioletred;
+    background: var(--plum);
   }
 
   .ball-three {
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
-    background: palevioletred;
+    background: var(--plum);
   }
 
