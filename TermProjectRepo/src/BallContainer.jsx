@@ -6,8 +6,8 @@ import preload from "./data.json";
 
 const BallContainer = () => (
     <div className="balls-container">
-        {preload.balls.map((ball, i) => (
-            <ShowBall ball={ball} i={i} />
+        {preload.balls.map((ball) => (
+            <ShowBall {...ball} />
         ))}
     </div>
 );

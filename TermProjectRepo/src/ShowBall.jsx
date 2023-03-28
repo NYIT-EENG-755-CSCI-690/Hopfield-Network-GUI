@@ -1,15 +1,15 @@
 import React from "react";
 
-const ShowBall = (props) => (
+const ShowBall = ({ val_one, val_two, val_three, id }) => (
     <div className="ball-set">
-        <div className="ball-one" key={props.i} style={{ "--i": props.i }}>
-            {props.ball.val_one}
+        <div className="ball-one" key={id} style={{ "--i": id }}>
+            {val_one}
         </div>
-        <div className="ball-two" key={props.i} style={{ "--i": props.i }}>
-            {props.ball.val_two}
+        <div className="ball-two" key={id} style={{ "--i": id }}>
+            {val_two}
         </div>
-        <div className="ball-three" key={props.i} style={{ "--i": props.i }}>
-            {props.ball.val_three}
+        <div className="ball-three" key={id} style={{ "--i": id }}>
+            {val_three}
         </div>
     </div>
 );
