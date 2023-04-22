@@ -1,16 +1,16 @@
 import React from "react";
 import { createRoot } from "react-dom";
-import Landing from "./Landing";
-import BallContainer from "./BallContainer";
+import Search from "./Search";
 
-const App = () => (
-    <div className="app">
-        <div className="landing">
-            <Landing />
-            <BallContainer />
+const App = () => {
+    return (
+        <div className="app">
+            <div className="landing">
+                <Search />
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 const container = document.getElementById("root");
 const root = createRoot(container);
