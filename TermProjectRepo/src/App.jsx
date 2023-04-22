@@ -1,27 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { createRoot } from "react-dom";
-import Landing from "./Landing";
-import BallContainer from "./BallContainer";
-
-// TODO: replace dummy data. Migrate ball dataset to api server and map data onto landing page.
+import Search from "./Search";
 
 const App = () => {
-    const [currentTime, setCurrentTime] = useState(1);
-
-    useEffect(() => {
-        fetch("/time")
-            .then((res) => res.json())
-            .then((data) => {
-                setCurrentTime(data);
-            });
-    }, []);
-
     return (
         <div className="app">
             <div className="landing">
-                <Landing />
-                <BallContainer />
-                <div>The current time is {currentTime.time} </div>.
+                <Search />
             </div>
         </div>
     );

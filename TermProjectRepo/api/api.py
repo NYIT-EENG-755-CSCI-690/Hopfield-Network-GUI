@@ -17,7 +17,7 @@ def get_current_time():
 def set_words_list():
     pass
     
-@app.route('/process-word', methods=['GET'])
+@app.route('/process-word')
 def process_word():
     # args = request.args
     # word = args['word']
@@ -26,6 +26,6 @@ def process_word():
     input_word = word_pair[0]
     output_word = word_pair[1]
     return {
-        "input word": input_word,
-        "output word": output_word
+        "input": input_word,
+        "output": output_word
         }
