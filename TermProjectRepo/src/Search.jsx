@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ShowBall from "./ShowBall";
-import preload from "./data.json";
+import BallContainer from "./BallContainer";
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -43,11 +42,7 @@ const Search = () => {
                     <button>Submit</button>
                 </header>
             </form>
-            <div className="balls-container">
-                {preload.balls.map((ball) => (
-                    <ShowBall {...ball} />
-                ))}
-            </div>
+            <BallContainer />
             <div>The input is {searchTerm.input}.</div>
             <div>The output is {searchTerm.output}.</div>
         </div>

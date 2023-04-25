@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const ShowBall = ({ val_one, val_two, val_three, id }) => {
+const ShowBall = ({ val, id }) => {
     const [move, setMove] = useState(false);
-
-    return (
-        <div className="ball-set">
+    if (val === "0") {
+        return (
             <motion.div
                 animate={{
                     x: move ? 200 : 0,
@@ -13,17 +12,17 @@ const ShowBall = ({ val_one, val_two, val_three, id }) => {
                 onClick={() => setMove(!move)}
             >
                 <div className="ball-one" key={id} style={{ "--i": id }}>
-                    {val_one}
+                    {val}
                 </div>
             </motion.div>
-            <div className="ball-two" key={(id += 1)} style={{ "--i": id }}>
-                {val_two}
+        );
+    } else {
+        return (
+            <div className="ball-two" key={id} style={{ "--i": id }}>
+                {val}
             </div>
-            <div className="ball-three" key={(id += 2)} style={{ "--i": id }}>
-                {val_three}
-            </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default ShowBall;
