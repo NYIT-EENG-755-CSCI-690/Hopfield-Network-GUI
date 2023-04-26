@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import BallContainer from "./BallContainer";
 import ApiDataContainer from "./ApiDataContainer";
 import preload from "./data.json";
+import Spinner from "./Spinner";
 
 // TODO not storing state correctly in search term
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [ApiData, setApiData] = useState([]);
     const [message, setMessage] = useState("");
+    const [spinner, setSpinner] = useState(false);
     const BALL_ARR = preload.balls;
 
     async function requestWord(body) {
@@ -30,12 +32,34 @@ const Search = () => {
         setMessage(newMessage);
     };
 
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
+    const delay = (time) => {
+        return new Promise((res) => {
+            setTimeout(res, time);
+        });
+    };
+
+    const runAfterDelay = async (cb) => {
+        await delay(1000);
+        cb(message);
+        setSpinner(false);
+    };
+
+    let results;
+    if (spinner) {
+        results = <Spinner />;
+    }
+
     return (
         <div className="search">
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    requestWord(message);
+                    runAfterDelay(requestWord);
+                    setSpinner(true);
                     // setMessage(searchTerm.input);
                 }}
             >
@@ -52,9 +76,11 @@ const Search = () => {
                 </header>
             </form>
             <BallContainer ballArr={BALL_ARR} />
+            {results}
             <ApiDataContainer ApiBallArr={ApiData} />
             <div>The input is {searchTerm.input}.</div>
             <div>The output is {searchTerm.output}.</div>
+            <button onClick={refreshPage}> Reload</button>
         </div>
     );
 };
