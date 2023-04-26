@@ -11,7 +11,7 @@ class Neuron:
     '''
     def __init__(self, state=0, threshold=0):
         self.state = state
-        self. threshold = threshold
+        self.threshold = threshold
     
 '''
 Neural Network
@@ -197,17 +197,14 @@ class Text_Processor:
 
         return(word, out_word)
 
-# def main():
-#     #words_list = ['THE','DOG','CAT']
-#     words_list = ['BEANS', 'APPLE', 'VALID', 'STACK']
+def main():
+    #words_list = ['THE','DOG','CAT']
+    words_list = ['BEANS', 'APPLE', 'VALID', 'STACK']
         
-#     txt_processor = Text_Processor(words=words_list)
+    txt_processor = Text_Processor(words=words_list)
 
-#     print(txt_processor.process_word('BEAMZ'))
-    
-
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
 
 '''
     words_list = ['the','dog','cat','box','zom']

@@ -5,19 +5,26 @@ const Search = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [message, setMessage] = useState("");
 
-    async function requestWord() {
-        await fetch("/process-word")
+    async function requestWord(body) {
+        await fetch("/process-word", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+        })
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
                 setSearchTerm(data);
-            });
+            })
+            .catch((error) => console.log(error));
         // setSearchTerm(word || "");
     }
 
     const handleMessage = (e) => {
         var newMessage = e.currentTarget.value;
-        // console.log(newMessage)
+        console.log(newMessage);
         setMessage(newMessage);
     };
 
@@ -26,8 +33,9 @@ const Search = () => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    requestWord();
-                    setMessage(searchTerm.input);
+                    console.log(message);
+                    requestWord(message);
+                    // setMessage(searchTerm.input);
                 }}
             >
                 <header>
