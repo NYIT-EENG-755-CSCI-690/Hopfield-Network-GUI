@@ -1,5 +1,5 @@
 
-  :root  {
+  :root{
       --black: #171321;
       --dkblue: #0d314b;
       --plum: #4b0d49;
@@ -50,13 +50,6 @@
   }
 
   .ball-two {
-    height: 5rem;
-    width: 5rem;
-    border-radius: 50%;
-    background: var(--plum);
-  }
-
-  .ball-three {
     height: 5rem;
     width: 5rem;
     border-radius: 50%;

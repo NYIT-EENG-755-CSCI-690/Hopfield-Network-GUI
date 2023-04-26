@@ -1,10 +1,10 @@
 import React from "react";
 import ShowBall from "./ShowBall";
 
-const BallContainer = (props) => {
+const ApiDataContainer = (props) => {
     return (
         <div className="balls-container">
-            {props.ballArr.map(
+            {props.ApiBallArr.map(
                 (
                     ball // {balls: [{values: []},...],...}
                 ) => (
@@ -22,4 +22,4 @@ const BallContainer = (props) => {
     );
 };
 
-export default BallContainer;
+export default ApiDataContainer;
