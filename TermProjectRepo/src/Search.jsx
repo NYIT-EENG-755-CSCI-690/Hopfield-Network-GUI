@@ -1,34 +1,66 @@
 import React, { useState, useEffect } from "react";
-import ShowBall from "./ShowBall";
+import BallContainer from "./BallContainer";
+import ApiDataContainer from "./ApiDataContainer";
 import preload from "./data.json";
+import Spinner from "./Spinner";
 
+// TODO not storing state correctly in search term
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    const [ApiData, setApiData] = useState([]);
     const [message, setMessage] = useState("");
+    const [spinner, setSpinner] = useState(false);
+    const BALL_ARR = preload.balls;
 
-    async function requestWord() {
-        await fetch("/process-word")
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setSearchTerm(data);
-            });
+    async function requestWord(body) {
+        const response = await fetch("/process-word", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+        });
+        const data = await response.json();
+        console.log(data);
+        setSearchTerm(data);
+        setApiData(data.balls);
         // setSearchTerm(word || "");
     }
 
     const handleMessage = (e) => {
         var newMessage = e.currentTarget.value;
-        // console.log(newMessage)
         setMessage(newMessage);
     };
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
+    const delay = (time) => {
+        return new Promise((res) => {
+            setTimeout(res, time);
+        });
+    };
+
+    const runAfterDelay = async (cb) => {
+        await delay(1000);
+        cb(message);
+        setSpinner(false);
+    };
+
+    let results;
+    if (spinner) {
+        results = <Spinner />;
+    }
 
     return (
         <div className="search">
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    requestWord();
-                    setMessage(searchTerm.input);
+                    runAfterDelay(requestWord);
+                    setSpinner(true);
+                    // setMessage(searchTerm.input);
                 }}
             >
                 <header>
@@ -43,13 +75,12 @@ const Search = () => {
                     <button>Submit</button>
                 </header>
             </form>
-            <div className="balls-container">
-                {preload.balls.map((ball) => (
-                    <ShowBall {...ball} />
-                ))}
-            </div>
+            <BallContainer ballArr={BALL_ARR} />
+            {results}
+            <ApiDataContainer ApiBallArr={ApiData} />
             <div>The input is {searchTerm.input}.</div>
             <div>The output is {searchTerm.output}.</div>
+            <button onClick={refreshPage}> Reload</button>
         </div>
     );
 };

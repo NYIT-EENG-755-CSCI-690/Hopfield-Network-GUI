@@ -17,15 +17,39 @@ def get_current_time():
 def set_words_list():
     pass
     
-@app.route('/process-word')
+@app.route('/process-word', methods=["POST", "GET"])
 def process_word():
     # args = request.args
     # word = args['word']
     # global txt_processor
-    word_pair = txt_processor.process_word('BEAMZ')
+    data = request.json
+    # print(data)
+    
+    # words_list = ['BEANS', 'APPLE', 'VALID', 'STACK']
+    word_pair = txt_processor.process_word(data)
     input_word = word_pair[0]
     output_word = word_pair[1]
-    return {
-        "input": input_word,
-        "output": output_word
-        }
+    
+
+    NEURAL_NETWORK = [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1]
+
+    API_DATA = {"input": input_word,
+            "output": output_word,
+            "balls": []}
+    
+    BALLS_ARR = API_DATA["balls"]
+
+    id = 0
+    for num in range(10):
+       BALL_DICT = {}
+       BALLS_ARR.append(BALL_DICT)
+       BALL_DICT["id"] = id
+       BALL_DICT["values"] = []
+       id += 1
+       for NEURON in NEURAL_NETWORK:
+               BALL_DICT["values"].append({"val": str(NEURON)})
+#    print(len(BALL_DICT["values"]))
+               
+    # print(API_DATA["balls"])
+    return API_DATA
+    
