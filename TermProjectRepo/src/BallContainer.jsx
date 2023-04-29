@@ -3,7 +3,7 @@ import ShowBall from "./ShowBall";
 
 const BallContainer = (props) => {
     return (
-        <div className="balls-container">
+        <div className="balls-container-one">
             {props.ballArr.map(
                 (
                     ball // {balls: [{values: []},...],...}
