@@ -35,6 +35,19 @@
   }
 
   .balls-container {
+    margin-top: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+
+  .balls-container-one {
+    margin-top: 10px;
+    padding-top: 10px;
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -52,6 +65,22 @@
   .ball-two {
     height: 5rem;
     width: 5rem;
+    border-radius: 50%;
+    background: var(--plum);
+  }
+
+
+
+  .ball-one-api {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background: palevioletred;
+  }
+
+  .ball-two-api {
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
     background: var(--plum);
   }

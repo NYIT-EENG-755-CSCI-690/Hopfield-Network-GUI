@@ -6,11 +6,15 @@ import Spinner from "./Spinner";
 
 // TODO not storing state correctly in search term
 const Search = () => {
+    const [output, setOutput] = useState("");
+    const [input, setInput] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [ApiData, setApiData] = useState([]);
     const [message, setMessage] = useState("");
     const [spinner, setSpinner] = useState(false);
     const BALL_ARR = preload.balls;
+    const ballQueue = [];
+    let isFirst = true;
 
     async function requestWord(body) {
         const response = await fetch("/process-word", {
@@ -21,9 +25,14 @@ const Search = () => {
             body: JSON.stringify(body),
         });
         const data = await response.json();
-        console.log(data);
+
         setSearchTerm(data);
-        setApiData(data.balls);
+        ballQueue.push(data.balls[0]);
+        if (ballQueue.length === 10) {
+            setInput(data.input);
+            setOutput(data.output);
+        }
+        setApiData(ballQueue);
         // setSearchTerm(word || "");
     }
 
@@ -43,6 +52,34 @@ const Search = () => {
     };
 
     const runAfterDelay = async (cb) => {
+        setSpinner(false);
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
+        await delay(1000);
+        cb(message);
+
         await delay(1000);
         cb(message);
         setSpinner(false);
@@ -53,16 +90,23 @@ const Search = () => {
         results = <Spinner />;
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSpinner(true);
+        runAfterDelay(requestWord);
+    };
+
+    useEffect(() => {
+        if (isFirst) {
+            isFirst = false;
+            return;
+        }
+        runAfterDelay(requestWord);
+    }, [ApiData, spinner]);
+
     return (
         <div className="search">
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    runAfterDelay(requestWord);
-                    setSpinner(true);
-                    // setMessage(searchTerm.input);
-                }}
-            >
+            <form onSubmit={handleSubmit}>
                 <header>
                     <h1>Term Project 755 / 690</h1>
                     <input
@@ -78,8 +122,8 @@ const Search = () => {
             <BallContainer ballArr={BALL_ARR} />
             {results}
             <ApiDataContainer ApiBallArr={ApiData} />
-            <div>The input is {searchTerm.input}.</div>
-            <div>The output is {searchTerm.output}.</div>
+            <div>The input is {input}</div>
+            <div>The output is {output}</div>
             <button onClick={refreshPage}> Reload</button>
         </div>
     );

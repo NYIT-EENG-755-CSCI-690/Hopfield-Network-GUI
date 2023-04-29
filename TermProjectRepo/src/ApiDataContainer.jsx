@@ -1,5 +1,5 @@
 import React from "react";
-import ShowBall from "./ShowBall";
+import ShowBallApi from "./ShowBallApi";
 
 const ApiDataContainer = (props) => {
     return (
@@ -12,7 +12,11 @@ const ApiDataContainer = (props) => {
                         {/* {ball.id} */}
                         <div>
                             {ball.values.map((val) => (
-                                <ShowBall {...val} key={ball.id} id={ball.id} />
+                                <ShowBallApi
+                                    {...val}
+                                    key={ball.id}
+                                    id={ball.id}
+                                />
                             ))}
                         </div>
                     </div>

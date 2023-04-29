@@ -40,7 +40,7 @@ def process_word():
     BALLS_ARR = API_DATA["balls"]
 
     id = 0
-    for num in range(10):
+    for num in range(1):
        BALL_DICT = {}
        BALLS_ARR.append(BALL_DICT)
        BALL_DICT["id"] = id
